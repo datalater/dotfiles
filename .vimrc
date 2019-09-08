@@ -104,6 +104,9 @@ Plugin 'nanotech/jellybeans.vim'
 " Find files
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Easy Align
+Plugin 'junegunn/vim-easy-align'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -124,9 +127,17 @@ imap kj <Esc>
 " insert today for jekyll
 map! <F5> <C-R>=strftime('%Y-%m-%d %H:%M:%S %z')<CR>
 
-" plugin
+"--- plugin
 nnoremap <F12>n :NERDTreeToggle<ENTER>
 "map <Leader>nt <ESC>:NERDTree<CR>
+
+"--- vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 """ autocmd
 function! LastModified()
