@@ -1,10 +1,16 @@
 [user]
-	name = datalater
 	email = the7mincheol@gmail.com
+	name = datalater
 [core]
+	autocrlf = input
 	precomposeunicode = true
 	quotepath = false
 [alias]
-	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
-	s = status -s
-	alias-list = ! git config --list | grep alias | cut -c 7-
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+    lh = "!git l | head -n 25"
+    s = status -s
+    ch = "!git checkout $(git branch | fzf )"
+    a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    co = "!git checkout $(git branch -vv | grep -v '^\\*' | fzf | awk '{print $1}')"
+    corb = "!git co && git rebase $(git branch | fzf)"
